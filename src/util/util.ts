@@ -1,7 +1,6 @@
 import fs from "fs";
 import Jimp = require("jimp");
 import fetch from "node-fetch";
-// const axios = require('axios').default;
 
 export async function filterImageFromURL(inputURL: string): Promise<string> {
   return new Promise(async (resolve, reject) => {
@@ -9,16 +8,7 @@ export async function filterImageFromURL(inputURL: string): Promise<string> {
       const res = await fetch(inputURL);
       const data = await res.arrayBuffer();
       const photo = await Jimp.read(Buffer.from(data));
-
-      // const { data: imageBuffer } = await axios({
-      //   method: 'get',
-      //   url: inputURL,
-      //   responseType: 'arraybuffer'
-      // });
-      // const photo = await Jimp.read(imageBuffer);
-
-      const outpath =
-        "/tmp/filtered." + Math.floor(Math.random() * 2000) + ".jpg";
+      const outpath = "/tmp/filtered." + Math.floor(Math.random() * 2000) + ".jpg";
       await photo
         .resize(256, 256)
         .quality(60)

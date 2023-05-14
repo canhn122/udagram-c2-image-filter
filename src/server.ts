@@ -9,7 +9,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   
   app.use(bodyParser.json());
   
-  app.get( "/filteredimage", async ( req, res ) => {
+  app.get( "/filteredimage", async ( req: express.Request, res: express.Response ) => {
     const image_url: string = req.query.image_url;
 
     if (image_url === undefined || image_url.length === 0) {
